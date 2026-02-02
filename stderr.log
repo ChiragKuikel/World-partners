@@ -1,0 +1,98 @@
+node:internal/modules/cjs/loader:1368
+  throw err;
+  ^
+
+Error: Cannot find module 'express'
+Require stack:
+- /home/worldpartn/world-partner-app/backend/dist/app.js
+- /usr/local/lsws/fcgi-bin/lsnode.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1365:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Module._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1445:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (/home/worldpartn/world-partner-app/backend/dist/app.js:6:35)
+    at Module._compile (node:internal/modules/cjs/loader:1688:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/worldpartn/world-partner-app/backend/dist/app.js',
+    '/usr/local/lsws/fcgi-bin/lsnode.js'
+  ]
+}
+
+Node.js v22.18.0
+Auth error: Error [AxiosError]: Request failed with status code 401
+    at rj (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:41:28976)
+    at IncomingMessage.<anonymous> (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:11994)
+    at nH.request (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:24495)
+    at async Object.authorize (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:29980)
+    at async Object.c (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:10:159581)
+    at async y (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:34:21013)
+    at async o (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:23655)
+    at async e.length.t (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:25098)
+    at async u (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:44732) {
+  code: 'ERR_BAD_REQUEST',
+  config: [Object],
+  request: [ClientRequest],
+  response: [Object],
+  status: 401,
+  constructor: [Function],
+  toJSON: [Function: toJSON]
+}
+Auth error: Error [AxiosError]: Request failed with status code 401
+    at rj (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:41:28976)
+    at IncomingMessage.<anonymous> (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:11994)
+    at nH.request (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:24495)
+    at async Object.authorize (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:29980)
+    at async Object.c (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:10:159581)
+    at async y (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:34:21013)
+    at async o (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:23655)
+    at async e.length.t (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:25098)
+    at async u (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:44732) {
+  code: 'ERR_BAD_REQUEST',
+  config: [Object],
+  request: [ClientRequest],
+  response: [Object],
+  status: 401,
+  constructor: [Function],
+  toJSON: [Function: toJSON]
+}
+Auth error: Error [AxiosError]: Request failed with status code 401
+    at rj (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:41:28976)
+    at IncomingMessage.<anonymous> (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:11994)
+    at nH.request (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:24495)
+    at async Object.authorize (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:29980)
+    at async Object.c (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:10:159581)
+    at async y (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:34:21013)
+    at async o (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:23655)
+    at async e.length.t (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:25098)
+    at async u (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:44732) {
+  code: 'ERR_BAD_REQUEST',
+  config: [Object],
+  request: [ClientRequest],
+  response: [Object],
+  status: 401,
+  constructor: [Function],
+  toJSON: [Function: toJSON]
+}
+Auth error: Error [AxiosError]: Request failed with status code 401
+    at rj (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:41:28976)
+    at IncomingMessage.<anonymous> (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:11994)
+    at nH.request (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:24495)
+    at async Object.authorize (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:29980)
+    at async Object.c (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:10:159581)
+    at async y (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:34:21013)
+    at async o (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:23655)
+    at async e.length.t (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:37:25098)
+    at async u (.next/server/chunks/[root-of-the-server]__86ad6e3f._.js:43:44732) {
+  code: 'ERR_BAD_REQUEST',
+  config: [Object],
+  request: [ClientRequest],
+  response: [Object],
+  status: 401,
+  constructor: [Function],
+  toJSON: [Function: toJSON]
+}

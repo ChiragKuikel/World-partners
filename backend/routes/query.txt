@@ -1,0 +1,8 @@
+ALTER TABLE job_applications
+ADD COLUMN application_status ENUM(
+  'pending',
+  'reviewing',
+  'shortlisted',
+  'rejected',
+  'accepted'
+) NOT NULL DEFAULT 'pending';

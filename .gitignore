@@ -1,0 +1,6 @@
+node_modules/
+.env
+SETUP_INSTRUCTIONS.md
+DEPLOYMENT_GUIDE.md
+README.md
+.next/
