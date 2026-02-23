@@ -5,7 +5,8 @@ import { verifyAdmin } from "../middleware/auth"
 import { ResultSetHeader } from "mysql2"
 const router = Router()
 import { RowDataPacket } from "mysql2/promise";
-
+import uploadResumeToDrive from "../config/uploader"
+import appendToGoogleSheet from "../config/googlesheets"
 
 
 // Submit job application (public)
@@ -13,13 +14,17 @@ router.post("/", async (req: Request, res: Response) => {
   try {
     const { jobId, firstName, lastName, dateOfBirth, gender, email, phone, facebookUrl, country, nearestStation, residenceStatus, japaneseLevel, workingDays, daysPerWeek, coverLetter, resume } = req.body
 
+    let driveFileLink = null;
     let resumeUrl = null
     let resumeKey = null
 
     if (resume) {
       const buffer = Buffer.from(resume, "base64")
       const fileName = `resumes/${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
-      const result = await uploadFileToR2(buffer, fileName)
+      const result = await uploadFileToR2(buffer, fileName);
+      driveFileLink = await uploadResumeToDrive(buffer, fileName);
+      console.log('✅ Resume uploaded to Drive:', driveFileLink);
+
       resumeUrl = result.url
       resumeKey = result.key
     }
@@ -30,6 +35,14 @@ router.post("/", async (req: Request, res: Response) => {
       [jobId, firstName, lastName, dateOfBirth, gender, email, phone, facebookUrl, country, nearestStation, residenceStatus, japaneseLevel, JSON.stringify(workingDays), daysPerWeek, coverLetter, resumeKey, resumeUrl],
     )
     connection.release()
+
+    try {
+      await appendToGoogleSheet(req.body, driveFileLink);
+      console.log('Google Sheet updated');
+    } catch (sheetError) {
+      console.error('Google Sheet update failed:', sheetError);
+      // Log but don't fail the response
+    }
 
     res.status(201).json({ id: result.insertId, message: "Application submitted successfully" })
   } catch (error) {
@@ -115,7 +128,6 @@ router.get('/:id/resume', verifyAdmin, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 
 
 

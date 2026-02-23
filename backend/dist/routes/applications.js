@@ -1,26 +1,42 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const database_1 = require("../config/database");
 const cloudflare_r2_1 = require("../config/cloudflare-r2");
 const auth_1 = require("../middleware/auth");
 const router = (0, express_1.Router)();
+const uploader_1 = __importDefault(require("../config/uploader"));
+const googlesheets_1 = __importDefault(require("../config/googlesheets"));
 // Submit job application (public)
 router.post("/", async (req, res) => {
     try {
         const { jobId, firstName, lastName, dateOfBirth, gender, email, phone, facebookUrl, country, nearestStation, residenceStatus, japaneseLevel, workingDays, daysPerWeek, coverLetter, resume } = req.body;
+        let driveFileLink = null;
         let resumeUrl = null;
         let resumeKey = null;
         if (resume) {
             const buffer = Buffer.from(resume, "base64");
             const fileName = `resumes/${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
             const result = await (0, cloudflare_r2_1.uploadFileToR2)(buffer, fileName);
+            driveFileLink = await (0, uploader_1.default)(buffer, fileName);
+            console.log('✅ Resume uploaded to Drive:', driveFileLink);
             resumeUrl = result.url;
             resumeKey = result.key;
         }
         const connection = await (0, database_1.getConnection)();
         const [result] = await connection.query("INSERT INTO job_applications (job_id,first_name,last_name,date_of_birth,gender,email,phone,facebook_url,country,nearest_station,residence_status,japanese_level,working_days,days_per_week,cover_letter, resume_key,resume_url) VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)", [jobId, firstName, lastName, dateOfBirth, gender, email, phone, facebookUrl, country, nearestStation, residenceStatus, japaneseLevel, JSON.stringify(workingDays), daysPerWeek, coverLetter, resumeKey, resumeUrl]);
         connection.release();
+        try {
+            await (0, googlesheets_1.default)(req.body, driveFileLink);
+            console.log('Google Sheet updated');
+        }
+        catch (sheetError) {
+            console.error('Google Sheet update failed:', sheetError);
+            // Log but don't fail the response
+        }
         res.status(201).json({ id: result.insertId, message: "Application submitted successfully" });
     }
     catch (error) {

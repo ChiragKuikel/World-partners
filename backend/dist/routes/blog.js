@@ -4,22 +4,14 @@ const express_1 = require("express");
 const database_1 = require("../config/database");
 const cloudflare_r2_1 = require("../config/cloudflare-r2");
 const auth_1 = require("../middleware/auth");
-const cloudflare_r2_2 = require("../config/cloudflare-r2");
 const router = (0, express_1.Router)();
 // Get all blog posts (public)
 router.get("/", async (req, res) => {
     try {
         const connection = await (0, database_1.getConnection)();
-        const [posts] = await connection.query("SELECT id, title, content, image_url,image_key, slug, created_at FROM blog_posts WHERE published = TRUE ORDER BY created_at DESC");
+        const [posts] = await connection.query("SELECT id, title, content, image_url, slug, created_at FROM blog_posts WHERE published = TRUE ORDER BY created_at DESC");
         connection.release();
-        const blogsWithUrls = await Promise.all(posts.map(async (blogs) => {
-            if (blogs.image_key) {
-                const signedUrl = await (0, cloudflare_r2_2.getFileFromR2)(blogs.image_key);
-                return { ...blogs, imageSignedUrl: signedUrl };
-            }
-            return posts;
-        }));
-        res.json(blogsWithUrls);
+        res.json(posts);
     }
     catch (error) {
         res.status(500).json({ error: "Failed to fetch blog posts" });
@@ -36,12 +28,7 @@ router.get("/:slug", async (req, res) => {
         if (!posts || posts.length === 0) {
             return res.status(404).json({ error: "Blog post not found" });
         }
-        const blog = posts[0];
-        let signedUrl = null;
-        if (blog.image_key) {
-            signedUrl = await (0, cloudflare_r2_2.getFileFromR2)(posts[0].image_key);
-        }
-        res.json({ ...blog, imageSignedUrl: signedUrl });
+        res.json(posts[0]);
     }
     catch (error) {
         res.status(500).json({ error: "Failed to fetch blog post" });

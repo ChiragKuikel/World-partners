@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
-import type { Metadata } from "next";
 import {
   Users, Target, Eye, Heart, Award, Globe, TrendingUp, Clock,
   Calendar, Building,
@@ -13,10 +12,7 @@ import {
   Building2
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "About Us | World Partner Nepal - Company Journey, Team & Values",
-  description: "Learn about World Partner Nepal, its journey, dedicated team, and core values. ",
-};
+
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
@@ -186,13 +182,13 @@ export default function About() {
               {[
                 {
                   title: "Our Mission",
-                  content: "To be a bridge to success for every individual by providing personalized visa and career support, empowering Nepalese talent to realize their full potential in Japan with confidence, security, and growth.",
+                  content: "We empower individuals by standing beside them and unlocking their full potential through meaningful and open communication.",
                   icon: <Target className="w-12 h-12" />,
                   color: "from-blue-500 to-cyan-500"
                 },
                 {
                   title: "Our Vision",
-                  content: "Our vision is to connect Nepalese talent with opportunities in Japan through safe, reliable, and ethical recruitment, supporting their journey at every step.",
+                  content: "Connecting the World and Creating Pathways to Trust and Success.",
                   icon: <Eye className="w-12 h-12" />,
                   color: "from-purple-500 to-pink-500"
                 },

@@ -5,11 +5,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Link from "next/link"
 import { motion } from 'framer-motion';
-import type { Metadata } from "next"
-export const metadata: Metadata = {
-  title: "Vacancies & Career Opportunities | World Partner Nepal",
-  description: "Explore current job openings at World Partner Nepal to kickstart your career in Japan.",
-};
+
 
 interface Job {
   id: number

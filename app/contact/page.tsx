@@ -6,11 +6,6 @@ import { MessageCircle, Upload, Building, User } from "lucide-react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { json } from "body-parser"
-import type { Metadata } from "next"
-export const metadata: Metadata = {
-  title: "Contact Us | World Partner Nepal",
-  description: "Get in touch with World Partner Nepal for inquiries about training, internships, and job opportunities in Japan.",
-};
 
 type ContactType = "individual" | "company"
 

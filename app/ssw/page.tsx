@@ -50,11 +50,7 @@ import {
   GiFishBucket,
   GiCircuitry
 } from 'react-icons/gi';
-import type { Metadata } from 'next';
-export const metadata: Metadata = {
-  title: "SSW Program | World Partner Nepal - Jobs in Japan for Nepali Youths",
-description: "Learn about the Special Skills Worker (SSW) program with World Partner Nepal. Discover how Nepali youths can gain job opportunities and career support in Japan.",
-};
+
 
 const SSW1Page = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'visa' | 'industries'>('industries');
@@ -497,7 +493,7 @@ const SSW1Page = () => {
                         <div className="md:w-2/5">
                           <div className="h-56 md:h-full">
                             <img
-                              src="./Nurse.jpg"
+                              src="./nurse.jpg"
                               alt="Nursing Care"
                               className="w-full h-full object-cover"
                             />

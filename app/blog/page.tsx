@@ -4,12 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "How Nepali Youths Can Find Jobs in Japan | World Partner Blog",
-  description: "Read our guide on how Nepali youths can secure jobs in Japan with training, internships, and career support from World Partner.",
-};
 
 
 interface BlogPost {
